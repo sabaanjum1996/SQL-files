@@ -1,0 +1,361 @@
+foreign key can not be repeated
+create table branchtable
+(
+branchID int primary key,
+branchname varchar(5),
+branchHOD varchar(50),
+);
+
+
+
+create table student
+(
+studentID int primary key,
+studentName varchar (50),
+BranchID int foreign key references branchtable(branchid),
+studentDOB date,
+contactnumber int,
+studentaddress varchar (100)
+);
+
+
+select * from student
+select * from branchtable
+insert into branchtable values(1,'cs','shiv kumar')
+insert into branchtable values(2,'it','rajeev kumar')
+insert into branchtable values(3,'ec','shoqat khan')
+insert into branchtable values(4,'me','neha sharma')
+insert into branchtable values(5,'ce','vipin tyagi')
+insert into branchtable values(6,'bba','sushmita sharma')
+insert into branchtable values(7,'bca','abrar khan')
+
+insert into student values(101, 'abdul ateeq', 6, '2000-03-05', 9865321, 'budhwara')
+insert into student values(102, 'rinkal jain', 1, '2005-07-09', 9932321, 'shahjanabaad')
+insert into student values(103, 'saba anjum', 4, '2000-03-20', 111475, 'jehangirabaad')
+insert into student values(104, 'maaz khan', 7, '1999-04-11', 915475, 'kohefiza')
+insert into student values(105, 'preeti sharma', 2, '2000-08-15', 986510, 'khanu gaon')
+insert into student values(106, 'trapti garewal', 5, '1996-03-25', 321475, 'lily takeez')
+insert into student values(107, 'monika verma', 3, '2003-01-15', 321333, 'jinci chouraha')
+
+
+
+insert into student values(108, 'abdul sattar', 6, '2006-08-05', 989888, 'idga hills')
+select * from student
+insert into student values(109, 'aatika khan', 2, '2016-08-05', 777888, 'arera colony')
+insert into student values(110, 'javed anjum', 1, '1999-01-05', 999992, 'katara hills')
+insert into student values(111, 'umair khan', 3, '2003-11-10', 780888, 'jumerati')
+insert into student values(112, 'abdul khan', 5, '2016-02-05', 789888, 'idga hills')
+--where close condition provide karata hai
+--udate command use for change any data in table with the help of primary key
+update student set studentaddress='moti masjid' where studentID=104
+update student set studentDOB='1985-03-12' where  studentID=107
+select * from branchtable
+select * from student
+--select command use to select data from database
+--performence tunning ko enhance karne ke liye we use index 
+select * from student where branchID<>1
+select * from student where branchID<>6 --not equal
+--alter command use to insert new tble in exist table
+alter table branchtable add HODsalary int
+update branchtable set HODsalary=50000 where branchID=1
+update branchtable set HODsalary=55000 where branchID=2
+update branchtable set HODsalary=507080 where branchID=3
+update branchtable set HODsalary=15012000 where branchID=4
+update branchtable set HODsalary=62500 where branchID=5
+update branchtable set HODsalary=52000 where branchID=6
+update branchtable set HODsalary=44120 where branchID=7
+select * from branchtable where HODsalary>60000
+select * from branchtable where HODsalary<60000
+select * from branchtable where HODsalary>=50000
+select * from branchtable where HODsalary<=50000
+select * from branchtable where HODsalary like 55000
+select * from branchtable where HODsalary like 65000
+select * from branchtable where HODsalary between 60000 and 70000
+--delete command
+delete from student where studentID=106
+alter table student drop column contactnumber
+#5/12/2022
+select * from student
+select * from branchtable
+
+alter table student
+add contactnumber numeric(20)
+
+update student set contactnumber=7898491210 where studentID=101
+update student set contactnumber=9874852512 where studentID=102
+update student set contactnumber=8814523685 where studentID=103
+update student set contactnumber=7024208555 where studentID=104
+update student set contactnumber=7721103333 where studentID=105
+update student set contactnumber=6269124215 where studentID=107
+update student set contactnumber=9496632541 where studentID=108
+update student set contactnumber=9996663331 where studentID=109
+update student set contactnumber=7974029323 where studentID=110
+update student set contactnumber=8814000523 where studentID=111
+update student set contactnumber=9111451412 where studentID=112
+--where clause with and or ,not
+select * from student
+where studentID=103 and studentaddress='budhwara'
+
+--alter command
+alter table student
+add Age int
+
+----CHANGING datatype
+select
+alter column Age numeric(3)
+
+--order by (sorting)
+select * from branchtable order by HODsalary
+select * from branchtable order by HODsalary desc
+select * from student order by studentName
+select * from student order by studentName desc
+select * from student order by BranchID
+select * from student order by BranchID desc
+select * from student order by contactnumber
+select * from student order by studentDOB
+
+--aggregate functions
+select * from branchtable
+select min(HODsalary) from branchtable --it prints no column name
+select max(HODsalary)from branchtable
+select min(HODsalary) as minimumsalary from branchtable
+select max(HODsalary) as maximumsalary from branchtable --it shows maximumsalary as a column name
+---count
+select count(studentaddress) as address from student 
+where studentaddress='budhwara'
+
+select count(branchiD) as totalstudent_in_cs from 
+student where branchID=1
+select * from student
+select count(contactnumber)from student
+
+--sum()
+select sum(HODsalary) from branchtable
+select sum(HODsalary) as totalsalary_of_allhod from branchtable
+--avg()
+select avg (HODsalary) from branchtable
+select avg (HODsalary)as average_salary_of_allHOD from branchtable
+--BETWEEN
+select   studentID, studentDOB, StudentName from student 
+where studentID BETWEEN 107 and 112 order by studentname asc
+select   studentID, studentDOB, StudentName from student 
+where studentID BETWEEN 107 and 112 order by studentname desc
+select * from student order by studentname
+
+create table tblemp
+(
+empID int primary key,
+empname varchar(50),
+empage int,
+empDepart varchar(10),
+empsalary int,
+empAdd varchar(100),
+departNo int foreign key references tbldepart(departNo),
+);
+create table tbldepart
+(
+departNo int primary key,
+departname varchar (55),
+departFloor varchar(50),
+);
+
+6/12/2022
+select * from tblemp
+alter table tblemp add empDesignation varchar(100)
+alter table tblemp add empCity varchar(50)
+update tblemp set empDesignation='Trainer'
+where empID=111
+
+update tblemp set empDesignation='Administrator'
+where empID=112
+update tblemp set empDesignation='Librarian'
+where empID=113
+update tblemp set empDesignation='Recepnist'
+where empID=114
+
+update tblemp set empDesignation='Software developer'
+where empID=115
+update tblemp set empDesignation='Data scientist'
+where empID=116
+--group by selection 
+select empDesignation,avg(empsalary) as maxsalary from tblemp
+where empDesignation in ('Librarian','Trainer')
+group by empDesignation 
+having avg(empsalary)>55000
+select * from tblemp
+alter table tblemp
+alter column empname varchar (50) not null
+insert into tblemp (empID,empname,empage,empDepart)values(121,'parizaad',64,'Bcom')
+--unique key constraint
+alter table tblemp
+add unique(empsalary)
+
+--multiple column pe uhnique key constraint lagana
+alter table tblemp
+add constraint unique_employee(empID,empDesignation)
+
+##13/12/2022
+--input parameter query
+--create procedure fetchstudentdata
+--@branch int,
+--@address varchar(50)
+--as
+--select studentID,studentname,studentaddress,branchID
+--from student where branchID=@branch or studentaddress=@address--
+
+--change sp by the help of alter sp
+--alter procedure fetchstudentdata
+--@branch int,
+--@address varchar(50)
+--as
+--select studentID,studentname,studentaddress,branchID
+--from student where branchID=@branch and studentaddress=@address--
+--fetchstudentdata 1,'kohefiza' --call parameter by the help of input paramtr
+create procedure fetchstudentdob
+@DOB date,
+@age int(20)
+as
+select studentID,studentname,studentaddress,branchID
+from student where studentDOB=@DOB or Age=@age
+
+--sp with output parameterfor take total count we use it
+select * from tblemp
+create procedure spCountdata
+@empdepart varchar(10),
+@count int out
+as
+select @count=count(*)from tblemp
+where empDepart=@empdepart
+
+declare @totalcount int
+execute spCountdata 4,@totalcount out
+select @totalcount
+
+
+declare @totalcount int
+execute spCountdata 5,@totalcount out
+select @totalcount
+
+alter procedure spCountdata
+@departno int,
+@count int out
+as
+select @count=count(*)from tblemp
+where departNo=@departno
+
+declare @totalcount int
+execute spCountdata 2,@totalcount out
+select @totalcount
+
+select * from person.person
+select count (*) from person.person
+create procedure spPerson
+@person varchar(10),
+@middlename varchar(10)
+as
+ select  PersonType,Firstname,MiddleName from Person.Person
+where PersonType=@person
+and MiddleName=@middlename
+spPerson em,j
+spPerson 'in',k
+
+--sp with output parameterfor take total count we use it
+create procedure spCountdata
+
+
+
+select * from Person.Person
+create procedure getPersonname
+@Fname varchar(50),
+@Mname varchar(50),
+@Lname varchar(50)
+as
+select FirstName,MiddleName,LastName from Person.Person 
+where FirstName=@Fname and MiddleName=@Mname and LastName=@Lname
+
+--getPersonname 'ken','lee','Galvin'--call bt sp name
+create procedure getpersonInfo
+@Mnam varchar(10),
+@count int out
+as
+select @count=count(*) from Person.Person
+where MiddleName=@Mnam
+
+declare
+execute
+select
+
+--INDEXING
+--two types of indexing clustered indexing and non clustered indexing
+while non clustererd indexing we find any data and in applied column we also cover other column as well
+execution plan we need
+covering
+16/12/2022
+--pegination it means database divided in pages and firstly it will sort data
+--it will help to indexing  and reduce execution time
+2 types of indexing 
+1.clustered indexing 2.non clustered index
+in clusatered indexing it will sort data and apply pegination in sequencial form
+u are only apply one indexing at a time  in one column it does not allow 2 indexing in the same table
+
+non clustered indexing
+in non clustered indexing  if u want to applu another column for indexing so in non clustered
+it will make a coppy of that column along with indexing column 
+for instace: already roll no, is pk and it will take name or jis column ke basis pe ap search kar rah hai uski ek copy alag banegi and 
+name column ko sort kr dega it will make a separate copy of that column would u llike to apply indexing and it will also make copy of that column and 
+data fetch in easialy and number of times is so high
+we appelied pegination data divided into pages
+
+covering index:
+in covering index it will make a column or that unique and jis column ko sort krna hai wo and 
+jis or column ko apki zarurt hai usko bhi 
+sath me le aata hai jois se apka execution time bach jata hai
+and no need for look up
+
+
+SET STATISTICS IO ON;
+select * from Person.Address where City='Bothell'
+-- NONCLUSTERED INDEX 
+create nonclustered index personaddress_city
+on Person.Address(City)
+select * from Person.Address where City='Bothell'
+
+--covering index
+create nonclustered index person_addresscity
+on Person.Address(city)
+include (addressline,postalcode)
+
+12/20/2022
+first we make get connection function
+then we make it 
+module hai understand krne k
+
+database ko connect krne ke liye coonnection ka use kaerte hasi
+select * from Sales.SalesOrderHeader
+--question 7
+select SalesOrderID,OrderDate,TotalDue from Sales.SalesOrderHeader
+where 
+
+--wildcards
+select * from tblemp
+where empname like'_a%'
+
+select * from tblemp
+where  empage like'2_'
+
+select * from tblemp
+where empname like 'm%'
+--substring
+select substring ('hello saba my name is jenny',5,9)as mystring
+select substring('todat we are going to start new project  so be ready for it i will met you soon',15,27)
+select * from tblemp
+select substring (empDesignation,1,4)as dsgn
+from tblemp where empid=112
+select substring (empAdd,5,12)as address from tblemp where departNo=2
+select substring (empAdd,3,10)as address from tblemp where departNo=3
+select substring (empname,5,12)as name from tblemp where departNo=4
+--use more than 1 column so we need to create sp for that 
+select * from tblemp
+--in function for given mulltiple values we use in
+select * from tblemp
+where empDesignation in ('Recepnist','Data scientist')

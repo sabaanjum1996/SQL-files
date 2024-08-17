@@ -1,0 +1,243 @@
+-------------------------------- DBMS - SQL --------------------------------
+
+SQL stands for Structured Query Language. It is the standard language for relational 
+database management systems. It is especially useful in handling organized 
+data comprised of entities (variables) and relations between different entities 
+of the data.
+
+* What is Database?
+A database is an organized collection of data, stored and retrieved digitally from a
+remote or local computer system.
+
+* What is DBMS?
+DBMS stands for Database Management System. DBMS is a system software responsible 
+for the creation, retrieval, updation, and management of the database. It ensures 
+that our data is consistent, organized, and is easily accessible by serving as an 
+interface between the database and its end-users or application software.
+
+* What is RDBMS?
+RDBMS stands for Relational Database Management System. RDBMS stores data in the 
+form of a collection of tables, and relations can be defined between the 
+common fields of these tables. Most modern database management systems like MySQL, 
+Microsoft SQL Server, Oracle, IBM DB2, and Amazon Redshift are based on RDBMS.
+
+* Advantages of DBMS:
+1. Controls database redundancy
+2. Data sharing
+3. Easy maintenance
+4. Reduce time
+5. Provides backup
+6. Multiple User Interface
+
+* Data Corruption: It arises when there is an accidental deletion of data or 
+  any changes made into the database. 
+
+* Data Redundancy: When same piece of data exists in multiple tables of a 
+  database in multiple forms, it will lead to data redundancy. 
+
+* Row Level Security: If we want the user to access a particular set of rows 
+  in a table then it is known as row level security. 
+
+* Column Level Security: If we want the user to access a particular set of columns
+  then it is known as column level security
+
+* What are Tables and Fields?
+A table is an organized collection of data stored in the form of rows and columns.
+Columns can be categorized as vertical and rows as horizontal. The columns in a 
+table are called fields while the rows can be referred to as records.
+
+* What are Constraints in SQL?
+It refers to a set of rules for the data in a table. Constraints are used to 
+limit the type of a data so that the data consistency is not disturbed. 
+The constraints are:
+
+1. NOT NULL - Restricts NULL value from being inserted into a column.
+2. CHECK - Verifies that all values in a field satisfy a condition.
+3. DEFAULT - Automatically assigns a default value if no value has been 
+   specified for the field.
+4. UNIQUE CONSTRAINT - It is a constraint which ensures that all the values in 
+   a column should be different. It is used to restrict a repeated data in a 
+   particular column.
+5. INDEX - It is used to locate and access the data in a database. Indexes 
+   are created using a few database columns.
+6. PRIMARY KEY - Uniquely identifies each record in a table.
+7. FOREIGN KEY - It is the key of one table whose values are derived from the 
+   primary key of another table to relate the two tables.Ensures referential 
+   integrity for a record in another table.
+
+* Associative Table: To violate the rules of atomicity an associative table 
+  can be made to inter-relate the two tables and use two foreign keys from 
+  both parent tables into an associative one.
+
+* Composite Key: If a primary key of one table is the combination of two or 
+  more columns (the repetition of column is not allowed) then it is known as 
+  a composite key.
+
+* Candidate Key: If there are more than one column with unique id within 
+  the same table then all the column will be counted as the candidates for 
+  being a primary key. Those candidates can be called as candidate keys.
+
+* Migration Key: If we are using a primary key of one table as foreign key 
+  in another table and also using it as a part of primary key in the second 
+  table then it is known as key migration.
+
+* Table Structure: It means to add data, to delete data, to modify data, to 
+  apply constraints, etc.
+
+* Referential Integrity:  It ensures the relationship between the two tables 
+  remains consistent.
+
+* Referential Key Constraint: It is also known as foreign key constraint. 
+  It is used to maintain the relationship/link between the two tables.
+
+* Entity Integrity: It ensures that each entity within a column must have 
+  a unique identity. The entity integrity constraints states that the primary 
+  value of the column cannot be null.
+
+* Cascading Referential Integrity: By using Cascading referential integrity 
+  constraints, we can define actions which are to be taken when a user tries 
+  to delete or update the key from parent table.
+
+* What is a Join? List its different types.
+  The SQL Join clause is used to combine records (rows) from two or more tables in 
+  a SQL database based on a related column between the two.
+  There are three different types of JOINs in SQL:
+
+1. (INNER) JOIN: Retrieves records that have matching values in both tables 
+   involved in the join. This is the widely used join for queries.
+
+2. OUTER JOIN: There are three types of outer joins:
+		a. LEFT (OUTER) JOIN: Retrieves all the records/rows from the left 
+		and the matched records/rows from the right table.
+
+		b. RIGHT (OUTER) JOIN: Retrieves all the records/rows from the right 
+		and the matched records/rows from the left table.
+   		
+		c. FULL (OUTER) JOIN: Retrieves all the records where there is a match 
+		in either the left or right table.
+
+3. CROSS JOIN : Returns the cartesian product of the tables involved in the joins
+
+* Select Command:
+  The select statement is used to select data from a database.
+1. Every table is broken up into smaller entities called fields.
+2. A field is a column in a table.
+3. A record is a horizontal entity in a table.
+4. A column is a vertical entity in a table.
+
+* Keywords/SQL Commands: 
+  SQL keywords are NOT case sensitive: select is the same as SELECT
+  Some Important SQL Commands:
+1. SELECT - extracts data from a database
+2. UPDATE - updates data in a database
+3. DELETE - deletes data from a database
+4. INSERT INTO - inserts new data into a database
+5. CREATE DATABASE - creates a new database
+6. ALTER DATABASE - modifies a database
+7. CREATE TABLE - creates a new table
+8. ALTER TABLE - modifies a table
+9. DROP TABLE - deletes a table
+10. CREATE INDEX - creates an index (search key)
+11. DROP INDEX - deletes an index
+
+
+* SELECT DISTINCT: It is used to return only distinct values 
+  (if a column contains many duplicate values)
+
+* WHERE: It is used to extract only those records which 
+  fulfill a specified condition. Operators Used in WHERE:
+1. = : Equal
+2. < : Less than
+3. > : Greater than
+4. <= : Less than or equal
+5. >= : Greater than or equal
+6. <> : Not equal
+7. BETWEEN : between a certain range
+8. LIKE : Search for a pattern
+9. IN : To specify multiple possible values for a column
+10. Not in can be used to specify values not required.
+
+* AND, OR, NOT Operators:
+1. AND- Displays a record if all conditions separated by AND are True.
+2. OR- Displays a record if any of the conditions separated by OR is True.
+3. NOT- Displays a record if condition is Not True.
+
+* WildCards:
+A wildcard character is used to substitute one or more characters in a string.
+These are used with LIKE operator to replace a single or set of characters in 
+any string. ex- %, _, [ ], etc
+
+* Substring:
+The substring function in SQL allows the user to extract a substring from 
+a particular string. It returns the part of a character, binary, text, or image 
+expression in SQL Server. Syntax - SUBSTRING (expression, start, length)  
+
+* Aggregate Functions:
+An aggregate function in SQL performs a calculation on multiple values and returns a 
+single value. SQL provides many aggregate functions that include-
+1. COUNT() - The COUNT() function returns the number of rows in a database table.
+2. MAX() - The MAX() function returns the highest value (maximun) in a set.
+3. MIN() - The MIN() function returns the lowest value (minimum) in a set.
+4. SUM() - The SUM() function returns the total sum of a numeric column.
+5. AVG() - The AVG() function returns the average value of a numeric column.
+
+We often use aggregate functions with the GROUP BY and HAVING clauses of the 
+SELECT statement.
+
+* GROUP BY : The Group By statement is used to group together any rows of a column 
+  with the same value stored in them, based on a function specified in the statement.
+
+* HAVING : Similar to WHERE clause, HAVING clause helps to apply conditions, but it
+  works with groups. The HAVING clause is used to apply a filter on the result of 
+  GROUP BY based on the specified condition.
+
+* ORDER BY: The ORDER BY command is used to sort the result set in ascending or 
+  descending order. By default, it sorts the result in ascending order.
+
+* UNION / UNION ALL: 
+  UNION combines the result set of two or more SELECT statements, showing 
+  only distinct values.
+  UNION ALL combines the results of two or more SELECT statements, showing all 
+  values, including duplicates if they exist.
+
+* Stored Procedures:
+Stored Procedures are a group of SQL statements that accepts some input in the form 
+of parameters and performs some task. We use stored procedures when we want to run 
+the same query over and over again. The specific query can be called by its name. 
+There are 3 different types of parameters, they are as follows: 
+
+1. IN: This is the Default Parameter for the procedure. It always receives the values from 
+	     calling program.
+2. OUT: This parameter always sends the values to the calling program.
+3. IN OUT: This parameter performs both the operations. It receives value as well
+	        	  as sends the values to the calling program.
+
+*Advantages of Stored Procedures:
+1. Stored Procedures are compiled and their execution plan is cached and used again,
+    when the same SP is executed again. 
+2. It reduces network traffic.
+3. It offers better security over the network.
+
+* Indexing:
+Indexing is required to improve the performance of queries. It is used to quickly 
+retrieve a particular data from the database. Using indexing one can optimize the 
+searching time of a database query. 
+Types of index-
+1. Clustered Index - It is used to perform sorting in a table. There can be only one 
+		   				 clustered index applied in a particular table but it can be 
+						 applied to multiple columns. Primary key of any table is by 
+						 default clustered. Here, index is the main data.
+
+2. Non-Clustered Index - There can be multiple non-clustered index within a table. 
+								In this, a copy of data is made. Index is the copy of data.
+
+3. Covering Index - The clustered index is actually a covering index, it does'nt need
+						 any copy of data. It contains all required information to resolve 
+						 the query.
+
+Advantages of Indexing:
+1. Indexing helps in faster query results or quick data retrieval.
+2. Indexing helps in faster sorting and grouping of records
+3. Some Indexing uses sorted and unique keys which helps to retrieve sorted 
+    queries even faster.
+4. Indexing helps in better CPU utilization and better performance.

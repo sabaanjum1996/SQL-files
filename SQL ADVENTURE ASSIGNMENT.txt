@@ -1,0 +1,176 @@
+2.question
+select Name,ProductNumber,Color from Production.Product
+
+--3.question 
+select * from Sales.SalesOrderHeader
+select CustomerID,SalesOrderID from Sales.SalesOrderHeader
+
+--4.question where clause
+select BusinessEntityID,FirstName, ModifiedDate from Person.Person  
+where ModifiedDate >2005-12-29
+
+5.question
+select BusinessEntityID,FirstName,ModifiedDate from Person.Person
+where ModifiedDate<>2013-11-08
+
+6.question
+select BusinessEntityID,Firstname,LastName,MiddleName,ModifiedDate from Person.Person where
+ModifiedDate between
+'2005-12-29' and '2009-12-01' 
+
+question7
+select SalesOrderId,OrderDate,TotalDue,ShipDate from Sales.SalesOrderHeader
+where orderdate between '2012-09-01' and '2012-09-30' and TotalDue > '1000'
+
+question no.8
+select SalesOrderNumber,TotalDue from Sales.SalesOrderHeader
+where SalesPersonID=279 or TerritoryID=6 and TotalDue >1000
+
+question no.9
+select SalesOrderNumber,TotalDue from Sales.SalesOrderHeader
+where SalesPersonID=279 or TerritoryID in(4,6) and TotalDue >1000
+
+question 10
+select* from Production.Product
+select ProductID,Name from Production.Product 
+where Name like '%chain%'
+
+question 11
+select ProductID,Name from Production.Product 
+where Name like '%helmet%'
+
+question 12
+select ProductID,Name from Production.Product
+where Name  not like 'helmet'
+
+question 13
+select MiddleName from Person.Person
+select BusinessEntityID,FirstName,MiddleName,LastName from Person.Person
+where MiddleName like '[%B%E]'
+
+--question 14
+select FirstName,LastName from Person.Person where LastName like 'ja%es'
+select FirstName,LastName from Person.Person where LastName like 'ja_es'
+in first query % takes zero and more charecters 
+but in scond query underscore reprsent single character so that we can say both give diffrent out
+ 
+question 15
+select SUBSTRING (AddressLine1 ,1,10) from Person.Address
+
+--question 16
+select SUBSTRING (AddressLine1,10,15) from Person.Address
+
+--question 17
+select substring(convert(varchar,orderDate),1,11) as OrderDate,
+ substring(convert(varchar,shipDate),1,11) as ShipDate from Sales.SalesOrderHeader
+
+--question 18
+
+ select substring (convert(varchar,OrderDate),7,6)as orderdate, month(orderdate),SalesOrderID,OrderDate from Sales.SalesOrderHeader
+
+--question19
+select substring(convert(varchar,OrderDate),8,4)order_year,substring (convert(varchar,OrderDate),1,4)as ordermonth,SalesOrderID,
+ orderdate from Sales.SalesOrderHeader
+
+--question 20
+inner join
+select jobTitle,BirthDate,P.FirstName,P.LastName from HumanResources.Employee as h
+inner join Person.Person as p
+on
+p.BusinessEntityID=h.BusinessEntityID
+
+--question 21
+select CustomerID,StoreID,TerritoryID,p.FirstName from sales.customer as s
+inner join person.person as p
+on
+p.BusinessEntityID=s.PersonID
+
+--question 22
+
+select s.CustomerID,s.StoreID,s.TerritoryID,p.FirstName ,ss.salesOrderID from sales.customer as s
+inner join person.person as p
+on
+p.BusinessEntityID=s.PersonID
+inner join Sales.SalesOrderHeader as ss
+on 
+ss.CustomerID = s.CustomerID
+
+
+--question 23
+select Bonus,SalesQuota,SalesOrderID FROM Sales.SalesOrderHeader
+inner join Sales.Salesperson
+on Sales.SalesOrderHeader.SalesPersonID = Sales.Salesperson.BusinessEntityID
+
+select ss.salesorderid, sp.salesquota,sp.bonus from sales.salesorderheader as ss
+inner join sales.salesperson as sp
+on
+ss.SalesPersonID=sp.BusinessEntityID
+
+24.question
+select ss.salesorderid,sp.salesquota,sp.bonus,pp.firstname,pp.middlename,pp.lastname  from sales.salesorderheader as ss
+inner join sales.salesperson as sp
+on ss.salespersonid=sp.businessentityid
+inner join person.person as pp
+on 
+pp.BusinessEntityID=sp.businessentityid
+
+
+--question 25
+select p.color,p.size ,ppm.CatalogDescription from production.product as p
+inner join
+production.productmodel as ppm
+on
+p.productmodelid=ppm.productmodelid
+
+--question 26
+select p.name,pp.firstname,pp.middlename,pp.lastname from person.person as pp
+inner join sales.customer as sc
+on pp.BusinessEntityID=sc.CustomerID
+inner join sales.SalesOrderHeader as ssoh
+on ssoh.CustomerID=sc.CustomerID
+inner join sales.salesorderdetail as ssod
+on ssoh.SalesOrderID=ssod.SalesOrderID
+inner join production.product as p
+on
+p.ProductID=ssod.ProductID
+
+
+27.
+select pp.Name ,ss.SalesOrderID from  production.product as pp
+left join
+sales.salesorderdetail as ss
+on
+pp.ProductID=ss.ProductID
+
+28.question
+select pp.Name ,ss.SalesOrderID from  production.product as pp
+left outter join
+sales.salesorderdetail as ss
+on
+pp.ProductID=ss.ProductID
+
+
+29-question
+select ssod.SalesOrderID, ssod.salespersonid ,ssp.salesytd
+from sales.salesperson as ssp
+left outer join sales.SalesOrderHeader as ssod
+ on ssod.salespersonid=ssp.businessentityid
+
+30.question
+select ssod.SalesOrderID, ssod.salespersonid ,ssp.salesytd,
+ p.firstname,p.middlename,p.lastname from sales.salesperson as ssp
+left outer join sales.SalesOrderHeader as ssod
+ on ssod.salespersonid=ssp.businessentityid
+ left outer join person.person as p
+ on
+ p.BusinessEntityID=ssp.BusinessEntityID
+
+
+ 31.
+select Name,ProductID from Production.Product where ProductID IN
+(select ProductID from  Sales.SalesOrderDetail)
+
+--32.question 
+
+select Name,ProductID from Production.Product where ProductID  not IN
+(select ProductID from  Sales.SalesOrderDetail)

@@ -1,0 +1,199 @@
+select * from student
+select * from branchtable
+select * from course
+insert into student values(112,'zafar ali',1,'2000-01-01','aero garden',7414141410,20,'B','samad','laiba','BCA','lala shaadi hall')
+update student set parentsaddress = 'Ashoka garden' where studentId=101
+update student set parentsaddress = 'Anand nagar' where studentId=102
+create table course
+(
+course_id int primary key ,
+branch_name int foreign key references branchtable(branchID),
+course_name varchar(25),
+course_type varchar(30)
+);
+insert into course values('501',1,'cs','Computer')
+
+insert into course values('502',2,'IT','SOftwere')
+insert into course values('503',3,'EC','Electronics')
+insert into course values('504',4,'Me','Mechanical Engg')
+insert into course values('505',5,'Ce','Civil construction')
+insert into course values('506',6,'BBA','Business Field')
+insert into course values('507',7,'BCA','bechalor degree')
+insert into course values('508',7,'BCA','bechalor degree')
+insert into course values('509',1,'cs','Computer')
+insert into course values('510',2,'cs','Developer software')
+insert into course values('511',3,'cs','Electronic with COde')
+
+--use where clause
+select * from course
+select course_id,course_name from course where course_type='Computer' 
+--use update command
+update course set course_name='It'where course_id=510
+--alter command
+alter table course add course_duration int 
+update course set course_duration=4 where course_id=501
+update course set course_duration=4 where course_id=502
+
+update course set course_duration=5 where course_id=503
+update course set course_duration=3 where course_id=504
+update course set course_duration=4 where course_id=505
+update course set course_duration=3 where course_id=506
+update course set course_duration=2 where course_id=507
+update course set course_duration=2 where course_id=508
+update course set course_duration=4 where course_id=509
+update course set course_duration=4 where course_id=510
+update course set course_duration=4 where course_id=511
+
+--not equal
+select * from course where branch_name  <>7
+select * from branchtable
+select branchHOD,branchID,HODsalary from branchtable where HODsalary >=50000
+select branchHOD,branchID,HODsalary from branchtable where HODsalary =50000
+--another procedure
+select * from branchtable where HODsalary like 55000
+--use between 
+select * from branchtable where HODsalary between 60000 and 70000
+--use delete command
+delete from student where studentId=112
+--drop command we use to drop any particular column
+alter table student drop column qualification
+--adding new column
+alter table branchtable add hodannualincome int
+---drop
+alter table branchtable drop column hodannualincome
+--where clause use and or not operator
+select studentName, branchID,studentaddress from student where age=21 and BranchID=6
+select studentName, branchID,studentaddress from student where age=21 or BranchID=6
+select studentName, branchID,age studentaddress from student where not age=21
+--change data types
+select * from branchtable
+alter table branchtable add HODCONtactNUM int
+update branchtable set HODCONtactNUM=63524110 WHERE branchID=1
+--change datatype 
+alter table branchtable alter column HODCONtactNUM NUMERIC(20)
+update branchtable set HODCONtactNUM=9352524110 WHERE branchID=2
+--order by
+select branchHOD,HODqualification,HODsalary from branchtable order by HOdsalary
+select branchHOD,branchID,HODqualification,HODsalary from branchtable where BranchID between 5 and 7 order by HOdsalary
+select * from branchtable
+--aggregate function
+select * from student 
+select * from branchtable
+select * from course
+--min
+select min(course_duration) as total_minmum_duration_of_course from course
+select min(Age)as minimum_age_of_student from student 
+--mac()
+select max(HODsalary)as mini_salary from branchtable
+select max(course_duration)as maximum_duration from course
+select max(Age) as mx_age from student 
+--count()
+select count(hodsalary)as total_count from branchtable
+select count(Age) as total_age  from student where age=31
+--sum
+select sum(HODsalary)as total_salary from branchtable
+--avg
+select avg(HODsalary) as average_salary from branchtable
+select avg(Age) from student
+select * from branchtable
+--between
+select * from branchtable where HODsalary between 40000 and 50000 order by branchname desc
+--question
+select * from student
+select studentId,studentName,studentDOB from student where studentId between 103 and 107 order by studentname
+
+
+--union all
+select studentname from student
+union
+select branchname from branchtable
+
+select branchname,branchHOD from branchtable
+union
+select studentname,studentaddress from student
+
+select * from branchtable
+select * from student
+
+
+select * from tblemp
+select * from tbldepart
+--union all
+select empname,empDesignation from tblemp 
+union all 
+select departname,departfloor from tbldepart
+
+select empname,empDesignation from tblemp 
+union 
+select departname,departfloor from tbldepart
+--creating dublicate table
+--join 
+select * from tblemp
+select * from tbldepart
+select empID,empname,e.departNo from tblemp as e
+inner join tbldepart as d
+on e.e.departNo=d.d.departNo
+
+--wild cards 
+select * from tblemp where empname like '%p%'
+select * from tblemp where empage like '25'
+select * from tblemp where empname like '_%i'
+
+----MS SQL INTERVIEW QUESTIONS
+What do you mean by database? ...
+What do you mean by RDBMS? ...
+Can you differentiate between SQL and MYSQL? ...
+What is an Entity in a Database?
+What is  identity key?
+What are Constraints?
+WHAT IS THE DIFFRENCE BETWEEN DELET DROP AND TRUNCATE SATEMENT
+WHAT IS UNIQUE KEY
+WHAT ARE SOME COMMON CLAUSE USED WITH SELECT QUERY IN SQL
+What are joins in SQL? WHAT IS THE DIFFERENCE BETWEEN JOINS AND UNION
+what is the diffrence between  havingand where clause 
+explain pattern matching in sql server 
+what is aggregate function how we use it and expalin its type
+
+difficult questions
+what do yuo understand between input output parameter in store procedure and how sp is benifitial for sql
+explain what is indexing diffrentiate its type is it important for sql 
+
+PYthond  question
+simple questions
+what is python  what are the benifits of using python
+what is dynamically typed language
+difference between map reduce and filter function
+what is scope in python 
+difference between list and  tuples
+explain generators vs iterators
+what are the common built in data types in python 
+what is the differences between break and continue and pass
+expalin split() and join() functions in python 
+diffrence between deep copy and shallow copy
+what are global ,protected and private attributes in python 
+
+
+difficult question 
+expalin class and object in python
+what is __init__ 
+how does inheritance work in python ?explain it with example and also expalian does python support multiple inheritance
+different between method overloading and method overriding
+what is multithreading 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

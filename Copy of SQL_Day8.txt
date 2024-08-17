@@ -1,0 +1,50 @@
+-- modifying sp
+alter procedure FetchStudentData
+@branch int,
+@address varchar(50)
+as
+select StudentID, StudentName, StudentAddress, Branch 
+from Student where Branch = @branch and StudentAddress = @address
+
+-- deleting sp
+drop proc spFetchdepart
+
+-- sp with output parameter
+create procedure spCountdata
+@empdepart int,
+@count int out
+as
+select @count = count(*) from tblemp
+where empDepart = @empdepart
+ 
+declare @totalcount int
+execute spCountdata 1, @totalcount out
+select @totalcount
+
+
+-- adventure works database
+create procedure getPersonTitle
+@title varchar(10),
+@count int out
+as
+select @count = count(*) from Person.Person
+where Title = @title 
+
+declare @totalCount int
+execute getPersonTitle 'Ms.', @totalCount out
+select @totalCount
+
+
+create procedure getEmployeeName1
+@title varchar(10),
+@EmployeeName varchar(50) out
+as
+select @EmployeeName = FirstName + ' ' + LastName
+from Person.Person where Title = @title
+
+declare @empname varchar(50)
+execute getEmployeeName1 'Mr.', @empname out
+select @empname
+
+
+

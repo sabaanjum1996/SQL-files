@@ -1,0 +1,55 @@
+---wildcards
+--- % Represents zero or more characters
+--- _ Represents a single character
+--- [] Represents any single character within the brackets
+--- ^ Represents any character not in the brackets
+--- - Represents any single character within the specified range
+--- # Represents any single numeric character within a specified range
+
+select * from tablename 
+where columnName like 'a%'
+
+select * from tablename 
+where columnName like '%a'
+
+select * from tablename 
+where columnName like '%a%'
+
+select * from tablename 
+where columnName like '_n'
+
+select * from tablename 
+where columnName like '_a%'
+
+select * from tablename 
+where columnName like 'b%a'
+
+---substrings
+
+select substring (string, start, length)
+
+select substring ('Hello World!', 1, 5) as myString
+
+select SUBSTRING('Whatt a wonderful day', 7, 5)
+
+select SUBSTRING(empDesignation, 1, 4) as dsgn
+from tblemp where empID = 5
+
+select SUBSTRING(empDesignation, 3, 4) from tblemp
+where empID = 4
+
+2022-12-05:11:23:45
+
+---convert()
+---convert datetime to string
+---convert(varchar, datetime)
+
+---convert and substring
+---substring(convert(varchar(),columnName), start, length)
+
+---use of IN 
+select * from tblemp
+where empCity in ('Paris', 'Tokyo')
+
+select * from tblemp
+where empDesignation in ('Trainer', 'Librarian')
